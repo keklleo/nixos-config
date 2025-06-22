@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs.nixvim = {
     enable = true;
     viAlias = true;
@@ -6,8 +6,9 @@
     vimdiffAlias = true;
     defaultEditor = true;
 
-    colorscheme = "tokyonight";
     colorschemes.tokyonight.enable = true;
+
+    globals.mapleader = " ";
 
     opts = {
       number = true;
@@ -73,6 +74,32 @@
 	action = "<C-w><C-j>";
 	options.desc = "Move focus to the lower window";
       }
+    ];
+
+    plugins.lz-n.enable = true;
+
+    plugins.nvim-autopairs = {
+      enable = true;
+      lazyLoad = {
+        enable = true;
+	settings.event = "InsertEnter";
+      };
+    };
+
+    plugins.lualine = {
+      enable = true;
+      settings = {
+	options = { section_separators = ""; component_separators = ""; };
+	sections = {
+	  lualine_b = [ { __unkeyed-1 = "branch"; icon = ""; } ];
+	  lualine_c = [ "filename" ];
+	  lualine_x = [ "filetype" ];
+	};
+      };
+    };
+
+    extraPlugins = with pkgs.vimPlugins; [
+      vim-sleuth
     ];
   };
 }
