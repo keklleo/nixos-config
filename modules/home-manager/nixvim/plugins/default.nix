@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   imports = [
+    ./cmp.nix
+    ./lsp.nix
     ./treesitter.nix
     ./lualine.nix
     ./nvim-autopairs.nix
