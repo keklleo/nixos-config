@@ -86,6 +86,8 @@
       };
     };
 
+    plugins.indent-blankline.enable = true;
+
     plugins.lualine = {
       enable = true;
       settings = {
@@ -95,6 +97,14 @@
 	  lualine_c = [ "filename" ];
 	  lualine_x = [ "filetype" ];
 	};
+      };
+    };
+
+    plugins.which-key = {
+      enable = true;
+      lazyLoad = {
+        enable = true;
+	settings.event = "VimEnter";
       };
     };
 
