@@ -100,6 +100,15 @@
       };
     };
 
+    plugins.treesitter = {
+      enable = true;
+      settings = {
+	auto_install = true;
+	highlight.enable = true;
+	indent.enable = true;
+      };
+    };
+
     plugins.which-key = {
       enable = true;
       lazyLoad = {
@@ -107,6 +116,10 @@
 	settings.event = "VimEnter";
       };
     };
+
+    extraPackages = with pkgs; [
+      gcc
+    ];
 
     extraPlugins = with pkgs.vimPlugins; [
       vim-sleuth
