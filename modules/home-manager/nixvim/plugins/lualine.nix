@@ -13,8 +13,8 @@
             icon = "";
           }
         ];
-        lualine_c = ["filename"];
-        lualine_x = ["filetype"];
+        lualine_c = [ "filename" ];
+        lualine_x = [ "filetype" ];
       };
     };
   };
