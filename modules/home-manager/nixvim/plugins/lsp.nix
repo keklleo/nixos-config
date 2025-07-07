@@ -23,9 +23,6 @@
           pyright.enable = true;
         };
       };
-      lsp-format = {
-        enable = true;
-      };
     };
   };
 }

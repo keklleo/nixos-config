@@ -2,6 +2,7 @@
   imports = [
     ./cmp.nix
     ./lsp.nix
+    ./fmt.nix
     ./treesitter.nix
     ./lualine.nix
     ./nvim-autopairs.nix
