@@ -9,6 +9,13 @@
 
     {
       mode = "n";
+      key = "<leader>q";
+      action.__raw = "vim.diagnostic.setloclist";
+      options.desc = "Open diagnostics quickfix list";
+    }
+
+    {
+      mode = "n";
       key = "<C-h>";
       action = "<C-w><C-h>";
       options.desc = "Move focus to the left window";
