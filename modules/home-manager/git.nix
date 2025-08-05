@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    git-credential-manager
+    git-credential-oauth
   ];
 
   programs.git = {
@@ -9,8 +9,7 @@
     userName = "Leonhard Kost";
     userEmail = "leonhard.kost@gmail.com";
     extraConfig = {
-      credential.helper = "manager";
-      credential.credentialStore = "secretservice";
+      credential.helper = "oauth";
     };
   };
 }
