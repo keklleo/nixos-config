@@ -1,6 +1,15 @@
 { pkgs, ... }:
 {
-  programs.kitty.enable = true;
+  programs.kitty = {
+    enable = true;
+    themeFile = "tokyo_night_night";
+    font = {
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      name = "JetBrainsMono NF";
+      size = 14;
+    };
+  };
+
   wayland.windowManager.hyprland =
     let
       # workspaces
@@ -26,7 +35,7 @@
 
       settings = {
         monitor = [
-          ",preferred,auto,1"
+          ",1920x1080@60,0x0,1"
         ];
         "$mod" = "SUPER";
         bind = [
@@ -56,6 +65,8 @@
           "fadeIn,1,5,default"
           "workspaces,1,3,default"
         ];
+
+        cursor.no_warps = true;
       };
     };
 }
