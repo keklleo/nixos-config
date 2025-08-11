@@ -14,7 +14,7 @@
       # accept completion with ctrl-y
       bind --mode insert \cy forward-char
       # initialize prompt
-      tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time=No --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Few icons' --transient=Yes
+      # tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time=No --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Few icons' --transient=Yes
     '';
     shellAbbrs = {
       la = "ls -lahH";
