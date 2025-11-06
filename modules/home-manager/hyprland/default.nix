@@ -54,10 +54,15 @@
           "ALTSHIFT,L,movewindow,r"
           "ALTSHIFT,K,movewindow,u"
           "ALTSHIFT,J,movewindow,d"
-        ] ++ workspaces;
+        ]
+        ++ workspaces;
 
-        decoration = {
-          rounding = 8;
+        windowrule = "bordersize 0, fullscreen:1";
+
+        general = {
+          gaps_in = 2;
+          gaps_out = 2;
+          "col.active_border" = "0xff888888";
         };
         animations.animation = [
           "windows,1,4,default"
