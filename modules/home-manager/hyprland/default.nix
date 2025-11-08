@@ -39,11 +39,11 @@
         ];
         "$mod" = "SUPER";
         bind = [
-          "ALT,Return,exec,kitty"
           "ALTSHIFT,Q,killactive,"
           "ALT,V,togglefloating,"
           "ALT,F,fullscreen,1"
           "ALTSHIFT,F,fullscreen,0"
+          "$mod,Return,exec,kitty"
           "$mod,F,exec,firefox"
 
           "ALT,H,movefocus,l"
