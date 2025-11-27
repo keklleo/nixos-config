@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  services.displayManager.ly.enable = true;
-
   programs.waybar.enable = true;
 
   wayland.windowManager.hyprland =

@@ -73,6 +73,9 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
+  # Enable ly display manager
+  services.displayManager.ly.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
