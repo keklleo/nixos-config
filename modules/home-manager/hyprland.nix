@@ -1,14 +1,8 @@
 { pkgs, ... }:
 {
-  programs.kitty = {
-    enable = true;
-    themeFile = "tokyo_night_night";
-    font = {
-      package = pkgs.nerd-fonts.jetbrains-mono;
-      name = "JetBrainsMono NF";
-      size = 14;
-    };
-  };
+  services.displayManager.ly.enable = true;
+
+  programs.waybar.enable = true;
 
   wayland.windowManager.hyprland =
     let

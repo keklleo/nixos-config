@@ -3,6 +3,7 @@
     ./git.nix
     ./fish.nix
     ./nixvim
-    ./hyprland
+    ./hyprland.nix
+    ./kitty.nix
   ];
 }
