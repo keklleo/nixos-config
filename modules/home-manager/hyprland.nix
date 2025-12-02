@@ -5,7 +5,7 @@
   wayland.windowManager.hyprland =
     let
       # workspaces
-      # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+      # binds $mod/alt + [shift +] {1..9} to [move to] workspace {1..9}
       workspaces = builtins.concatLists (
         builtins.genList (
           i:
@@ -13,8 +13,10 @@
             ws = toString (i + 1);
           in
           [
-            "ALT, ${ws}, workspace, ${ws}"
-            "ALTSHIFT, ${ws}, movetoworkspace, ${ws}"
+            "$mod,${ws},workspace,${ws}"
+            "ALT,${ws},workspace,${ws}"
+            "$mod SHIFT,${ws},movetoworkspace,${ws}"
+            "ALTSHIFT,${ws},movetoworkspace,${ws}"
           ]
         ) 9
       );
