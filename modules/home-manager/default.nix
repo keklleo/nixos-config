@@ -5,5 +5,6 @@
     ./nixvim
     ./hyprland.nix
     ./kitty.nix
+    ./rofi
   ];
 }
