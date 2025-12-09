@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs; [ nordzy-cursor-theme ];
+
   programs.waybar.enable = true;
 
   wayland.windowManager.hyprland =
@@ -28,6 +30,9 @@
       xwayland.enable = true;
 
       settings = {
+        exec-once = [
+          "hyperctl setcursor Nordzy-cursors 26"
+        ];
         monitor = [
           ",1920x1080@60,0x0,1"
         ];
