@@ -6,9 +6,9 @@
 
   programs.git = {
     enable = true;
-    userName = "Leonhard Kost";
-    userEmail = "leonhard.kost@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "Leonhard Kost";
+      user.email = "leonhard.kost@gmail.com";
       credential.credentialStore = "cache";
       credential.helper = "manager";
     };
