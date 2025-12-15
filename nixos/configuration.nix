@@ -73,11 +73,8 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable ly display manager
-  services.displayManager.ly.enable = true;
-
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  #services.printing.enable = true;
 
   # Enable firmware
   #hardware.enableAllFirmware = true;
@@ -86,16 +83,13 @@
   #hardware.bluetooth.enable = true;
 
   # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Install firefox.
-  programs.firefox.enable = true;
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  # };
 
   networking.hostName = "desktop";
 
