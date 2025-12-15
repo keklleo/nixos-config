@@ -72,6 +72,7 @@
           "workspaces,1,3,default"
         ];
 
+        dwindle.force_split = 2;
         cursor.no_warps = true;
       };
     };
