@@ -30,8 +30,9 @@
       xwayland.enable = true;
 
       settings = {
-        exec-once = [
-          "hyperctl setcursor Nordzy-cursors 26"
+        env = [
+          "HYPRCURSOR_THEME,Nordzy-cursors"
+          "HYPRCURSOR_SIZE,26"
         ];
         monitor = [
           ",1920x1080@60,0x0,1"
