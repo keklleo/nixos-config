@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    git-credential-manager
+    git-credential-oauth
   ];
 
   programs.git = {
@@ -9,8 +9,10 @@
     settings = {
       user.name = "Leonhard Kost";
       user.email = "leonhard.kost@gmail.com";
-      credential.credentialStore = "cache";
-      credential.helper = "manager";
+      credential.helper = [
+        "cache --timeout 21600"
+        "oauth" # Eventually with optional -device flag
+      ];
     };
   };
 }
