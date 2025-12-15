@@ -7,26 +7,9 @@
     ];
 
     plugins = {
-      luasnip.enable = true;
-      cmp-nvim-lsp.enable = true;
-      cmp-nvim-lsp-signature-help.enable = true;
-
       lspkind = {
         enable = true;
-
-        settings = {
-          cmp = {
-            enable = true;
-            menu = {
-              nvim_lsp = "[LSP]";
-              nvim_lua = "[api]";
-              path = "[path]";
-              luasnip = "[snip]";
-              buffer = "[buffer]";
-            };
-          };
-          mode = "symbol";
-        };
+        settings.mode = "symbol";
       };
 
       cmp = {
@@ -35,6 +18,11 @@
 
         settings = {
           snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+          formatting.fields = [
+            "abbr"
+            "kind"
+            "menu"
+          ];
 
           mapping = {
             "<C-p>" = "cmp.mapping.select_prev_item()";
@@ -61,7 +49,7 @@
 
           sources = [
             { name = "nvim_lsp"; }
-            { name = "luasnip"; }
+            { name = "nvim_lsp_signature_help"; }
             { name = "path"; }
           ];
         };
