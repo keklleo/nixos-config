@@ -44,6 +44,15 @@
           lua_ls.enable = true;
           nil_ls.enable = true;
           pyright.enable = true;
+          ts_ls.enable = true;
+          vue_ls.enable = true;
+          qmlls = {
+            enable = true;
+            cmd = [
+              "qmlls"
+              "-E"
+            ];
+          };
         };
       };
     };
