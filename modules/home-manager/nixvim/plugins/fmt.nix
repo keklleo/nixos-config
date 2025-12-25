@@ -1,10 +1,5 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    stylua
-    nixfmt-rfc-style
-  ];
-
   programs.nixvim = {
     opts.formatexpr = "v:lua.require'conform'.formatexpr()";
 
@@ -48,5 +43,10 @@
         };
       };
     };
+
+    extraPackages = with pkgs; [
+      stylua
+      nixfmt-rfc-style
+    ];
   };
 }
