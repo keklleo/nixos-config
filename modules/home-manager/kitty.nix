@@ -8,5 +8,8 @@
       name = "JetBrainsMono NF";
       size = 14;
     };
+    keybindings = {
+      "ctrl+alt+enter" = "launch --cwd=current";
+    };
   };
 }
