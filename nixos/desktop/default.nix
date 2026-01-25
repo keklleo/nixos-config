@@ -1,25 +1,12 @@
 {
   inputs,
   outputs,
-  lib,
-  config,
-  pkgs,
   ...
 }:
 {
   imports = [
-    (import ../base.nix {
-      inherit
-        inputs
-        outputs
-        config
-        lib
-        pkgs
-        ;
-    })
-    (import ./hardware-configuration.nix {
-      inherit lib;
-    })
+    (import ../base.nix { inherit inputs outputs; })
+    ./hardware-configuration.nix
   ];
 
   # Enable CUPS to print documents.
