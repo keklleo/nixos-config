@@ -1,5 +1,3 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
   outputs,
@@ -10,7 +8,6 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
     outputs.nixosModules
   ];
 
@@ -73,32 +70,12 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable CUPS to print documents.
-  #services.printing.enable = true;
-
-  # Enable firmware
-  #hardware.enableAllFirmware = true;
-
-  # Enable bluetooth
-  #hardware.bluetooth.enable = true;
-
-  # Enable sound with pipewire.
-  # security.rtkit.enable = true;
-  # services.pipewire = {
-  #   enable = true;
-  #   alsa.enable = true;
-  #   alsa.support32Bit = true;
-  #   pulse.enable = true;
-  # };
-
-  networking.hostName = "desktop";
-
   users.users = {
     leonhard = {
-      # TODO: You can set an initial password for your user.
+      # You can set an initial password for your user.
       # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change it (using passwd) after rebooting!
-      initialPassword = "correcthorsebatterystaple";
+      initialPassword = "leonhard";
       isNormalUser = true;
       extraGroups = [ "wheel" ];
     };
