@@ -43,7 +43,7 @@
           inherit pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./home-manager/home.nix
+            ./home-manager/desktop/leonhard.nix
           ];
         };
       };
