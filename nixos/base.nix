@@ -72,17 +72,6 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  users.users = {
-    leonhard = {
-      # You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
-      initialPassword = "leonhard";
-      isNormalUser = true;
-      extraGroups = [ "wheel" ];
-    };
-  };
-
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "25.11";
 }

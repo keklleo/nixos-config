@@ -22,6 +22,21 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+
+      mkNixosConfig = name: modules: {
+        "${name}" = nixpkgs.lib.nixosSystem {
+          inherit modules;
+          specialArgs = { inherit inputs outputs; };
+        };
+      };
+
+      mkHomeConfig = name: modules: {
+        "${name}" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          inherit modules;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+      };
     in
     {
       packages = import ./pkgs pkgs;
@@ -29,23 +44,11 @@
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
-      nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./nixos/desktop
-          ];
-        };
-      };
+      nixosConfigurations =
+        (mkNixosConfig "desktop" [ ./nixos/desktop ]) // (mkNixosConfig "server" [ ./nixos/server ]);
 
-      homeConfigurations = {
-        "leonhard@desktop" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            ./home-manager/desktop/leonhard.nix
-          ];
-        };
-      };
+      homeConfigurations =
+        (mkHomeConfig "leonhard@desktop" [ ./home-manager/desktop/leonhard.nix ])
+        // (mkHomeConfig "leonhard@server" [ ./home-manager/server/leonhard.nix ]);
     };
 }

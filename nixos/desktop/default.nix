@@ -27,5 +27,13 @@
   #   pulse.enable = true;
   # };
 
+  users.users = {
+    leonhard = {
+      initialPassword = "leonhard";
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+    };
+  };
+
   networking.hostName = "desktop";
 }
