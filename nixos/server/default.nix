@@ -18,4 +18,6 @@
   };
 
   networking.hostName = "server";
+
+  kekleo.graphical = false;
 }
