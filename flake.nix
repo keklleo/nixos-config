@@ -23,9 +23,11 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
 
+      commonModules = [ ./options.nix ];
+
       mkNixosConfig = name: modules: {
         "${name}" = nixpkgs.lib.nixosSystem {
-          inherit modules;
+          modules = modules ++ commonModules;
           specialArgs = { inherit inputs outputs; };
         };
       };

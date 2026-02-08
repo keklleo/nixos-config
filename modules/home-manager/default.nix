@@ -1,7 +1,5 @@
 {
   imports = [
-    ../options.nix
-
     ./git.nix
     ./fish.nix
     ./nixvim
