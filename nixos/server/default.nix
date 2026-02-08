@@ -2,52 +2,23 @@
   inputs,
   outputs,
   config,
-  pkgs,
   ...
 }:
-let
-  dyndnsScript = pkgs.writeScript "dyndns.py" (builtins.readFile ./dyndns.py);
-in
 {
   imports = [
     (import ../base.nix { inherit inputs outputs; })
     ./hardware-configuration.nix
-    ./secrets
     inputs.agenix.nixosModules.default
+    ./secrets
+    ./dyndns.nix
   ];
 
-  users.groups.dyndns = { };
   users.users = {
     leonhard = {
       initialPassword = "leonhard";
       isNormalUser = true;
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = config.kekleo.publicKeys;
-    };
-    dyndns = {
-      isSystemUser = true;
-      group = "dyndns";
-      packages = [ pkgs.python313Packages.nc-dnsapi ];
-    };
-  };
-
-  systemd.timers."dyndns" = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnBootSec = "5m";
-      OnUnitActiveSec = "5m";
-      Unit = "dyndns.service";
-    };
-  };
-
-  systemd.services."dyndns" = {
-    script = ''
-      set -eu
-      ${pkgs.python313}/bin/python3 ${dyndnsScript}
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      User = "dyndns";
     };
   };
 
