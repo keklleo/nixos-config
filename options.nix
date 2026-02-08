@@ -1,18 +1,32 @@
 {
+  config,
   lib,
   ...
 }:
 {
-  options.kekleo = {
+  options.kekleo = with lib.types; {
+    publicKeys = lib.mkOption {
+      type = listOf string;
+      default = [ ];
+      description = "List of public keys to use for ssh login, secret encryption, etc.";
+    };
     graphical = lib.mkOption {
-      type = lib.types.bool;
+      type = bool;
       default = true;
       description = "Enable GUI features and programs";
     };
     neovim = lib.mkOption {
-      type = lib.types.bool;
+      type = bool;
       default = true;
       description = "Enable neovim";
     };
   };
+
+  config.home-manager.sharedModules = [
+    {
+      kekleo.publicKeys = lib.mkDefault config.kekleo.publicKeys;
+      kekleo.graphical = lib.mkDefault config.kekleo.graphical;
+      kekleo.neovim = lib.mkDefault config.kekleo.neovim;
+    }
+  ];
 }
