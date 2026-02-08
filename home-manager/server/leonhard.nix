@@ -12,6 +12,4 @@
     username = "leonhard";
     homeDirectory = "/home/leonhard";
   };
-
-  kekleo.graphical = false;
 }

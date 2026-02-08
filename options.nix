@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   ...
 }:
@@ -21,12 +20,4 @@
       description = "Enable neovim";
     };
   };
-
-  config.home-manager.sharedModules = [
-    {
-      kekleo.publicKeys = lib.mkDefault config.kekleo.publicKeys;
-      kekleo.graphical = lib.mkDefault config.kekleo.graphical;
-      kekleo.neovim = lib.mkDefault config.kekleo.neovim;
-    }
-  ];
 }
