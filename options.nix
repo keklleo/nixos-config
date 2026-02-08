@@ -6,7 +6,7 @@
 {
   options.kekleo = with lib.types; {
     publicKeys = lib.mkOption {
-      type = listOf string;
+      type = listOf str;
       default = [ ];
       description = "List of public keys to use for ssh login, secret encryption, etc.";
     };
