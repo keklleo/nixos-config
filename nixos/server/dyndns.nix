@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -21,6 +22,10 @@
 
   systemd.services."dyndns" = {
     script = ''
+      NC_CUSTOMER=${"$(cat " + config.age.secrets.nc_customer.path + ")"}
+      NC_API_PASSWORD=${"$(cat " + config.age.secrets.nc_api_password.path + ")"}
+      NC_API_KEY=${"$(cat " + config.age.secrets.nc_api_key.path + ")"}
+      NC_DOMAIN=${"$(cat " + config.age.secrets.nc_domain.path + ")"}
       python3 -c "${builtins.readFile ./dyndns.py}"
     '';
     serviceConfig = {

@@ -11,4 +11,8 @@
     file = ./nc_api_key.age;
     owner = "dyndns";
   };
+  age.secrets.nc_domain = {
+    file = ./nc_domain.age;
+    owner = "dyndns";
+  };
 }
