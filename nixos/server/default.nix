@@ -24,6 +24,7 @@
 
   networking = {
     hostName = "server";
+    firewall.enable = false;
     interfaces.eno1 = {
       ipv4.addresses = [
         {
