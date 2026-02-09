@@ -6,7 +6,7 @@ api_password = os.environ["NC_API_PASSWORD"]
 api_key = os.environ["NC_API_KEY"]
 domain = os.environ["NC_DOMAIN"]
 
-ip = str(urllib3.request("GET", "https://api.ipify.org").data)
+ip = urllib3.request("GET", "https://api.ipify.org").data.decode("ascii")
 
 with Client(customer, api_key, api_password) as api:
     to_be_updated = []
@@ -21,5 +21,6 @@ with Client(customer, api_key, api_password) as api:
     api.update_dns_records(domain, to_be_updated)
 
     zone = api.dns_zone(domain)
-    zone.ttl = 300
-    api.update_dns_zone(domain, zone)
+    if zone.ttl != 300:
+        zone.ttl = 300
+        api.update_dns_zone(domain, zone)
