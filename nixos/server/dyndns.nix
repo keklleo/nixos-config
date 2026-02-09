@@ -7,8 +7,6 @@
   users.users.dyndns = {
     isSystemUser = true;
     group = "dyndns";
-    createHome = true;
-    home = /var/dyndns;
     packages = [ pkgs.python313Packages.nc-dnsapi ];
   };
 
