@@ -26,7 +26,7 @@
       NC_API_PASSWORD=${"$(cat " + config.age.secrets.nc_api_password.path + ")"}
       NC_API_KEY=${"$(cat " + config.age.secrets.nc_api_key.path + ")"}
       NC_DOMAIN=${"$(cat " + config.age.secrets.nc_domain.path + ")"}
-      python3 -c "${builtins.readFile ./dyndns.py}"
+      ${pkgs.python313}/bin/python3 -c "${builtins.readFile ./dyndns.py}"
     '';
     serviceConfig = {
       Type = "oneshot";
