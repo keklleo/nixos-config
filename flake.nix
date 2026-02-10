@@ -38,7 +38,7 @@
       mkHomeConfig = name: modules: {
         "${name}" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          inherit modules;
+          modules = modules ++ commonModules;
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };
