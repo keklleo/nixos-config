@@ -11,6 +11,7 @@ in
   users.users.dyndns = {
     isSystemUser = true;
     group = "dyndns";
+    description = "DynDNS service user";
   };
 
   systemd.timers."dyndns" = {
