@@ -7,6 +7,7 @@
 {
   home.packages = with pkgs; [
     git-credential-oauth
+    git-crypt
   ];
 
   programs.git = {
