@@ -8,9 +8,7 @@
   imports = [
     (import ../base.nix { inherit inputs outputs; })
     ./hardware-configuration.nix
-    inputs.agenix.nixosModules.default
-    ./secrets
-    ./dyndns.nix
+    ./dyndns
   ];
 
   users.users = {

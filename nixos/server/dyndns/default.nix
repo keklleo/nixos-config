@@ -1,10 +1,14 @@
 {
-  config,
   pkgs,
   ...
 }:
 let
-  pyenv = pkgs.python3.withPackages (ps: with ps; [ nc-dnsapi ]);
+  pyenv = pkgs.python3.withPackages (
+    ps: with ps; [
+      nc-dnsapi
+      python-dotenv
+    ]
+  );
 in
 {
   users.groups.dyndns = { };
@@ -25,16 +29,10 @@ in
   };
 
   systemd.services."dyndns" = {
-    script = ''
-      NC_CUSTOMER=${"$(cat " + config.age.secrets.nc_customer.path + ")"} \
-      NC_API_PASSWORD=${"$(cat " + config.age.secrets.nc_api_password.path + ")"} \
-      NC_API_KEY=${"$(cat " + config.age.secrets.nc_api_key.path + ")"} \
-      NC_DOMAIN=${"$(cat " + config.age.secrets.nc_domain.path + ")"} \
-      ${pyenv.interpreter} ${./dyndns.py}
-    '';
     serviceConfig = {
       Type = "oneshot";
       User = "dyndns";
+      ExecStart = "${pyenv.interpreter} ${./dyndns.py} ${./nc.env.secret}";
     };
   };
 }
