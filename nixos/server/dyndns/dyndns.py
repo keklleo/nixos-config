@@ -29,6 +29,6 @@ with Client(CUSTOMER, API_KEY, API_PASSWORD) as api:
         api.update_dns_records(DOMAIN, to_be_updated)
 
     zone = api.dns_zone(DOMAIN)
-    if zone.ttl != 300:
-        zone.ttl = 300
+    if zone.ttl != '300':
+        zone.ttl = '300'
         api.update_dns_zone(DOMAIN, zone)
