@@ -3,12 +3,7 @@
   ...
 }:
 let
-  pyenv = pkgs.python3.withPackages (
-    ps: with ps; [
-      nc-dnsapi
-      python-dotenv
-    ]
-  );
+  pyenv = pkgs.python3.withPackages (ps: with ps; [ nc-dnsapi ]);
 in
 {
   users.groups.dyndns = { };
@@ -32,7 +27,8 @@ in
     serviceConfig = {
       Type = "oneshot";
       User = "dyndns";
-      ExecStart = "${pyenv.interpreter} ${./dyndns.py} ${./nc.env.secret}";
+      ExecStart = "${pyenv.interpreter} ${./dyndns.py}";
+      EnvironmentFile = ./. + "/nc.env.secret";
     };
   };
 }

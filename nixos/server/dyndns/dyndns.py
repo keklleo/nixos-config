@@ -1,17 +1,10 @@
 from nc_dnsapi import Client
-from dotenv import dotenv_values
-import sys, urllib3
+import os, urllib3
 
-if len(sys.argv) != 2:
-    raise Exception("Something funky is going on with argv")
-
-dotenv_path = sys.argv[1]
-secrets = dotenv_values(dotenv_path)
-
-CUSTOMER = secrets["NC_CUSTOMER"]
-API_PASSWORD = secrets["NC_API_PASSWORD"]
-API_KEY = secrets["NC_API_KEY"]
-DOMAIN = secrets["NC_DOMAIN"]
+CUSTOMER = os.environ["NC_CUSTOMER"]
+API_PASSWORD = os.environ["NC_API_PASSWORD"]
+API_KEY = os.environ["NC_API_KEY"]
+DOMAIN = os.environ["NC_DOMAIN"]
 
 ip = urllib3.request("GET", "https://api.ipify.org").data.decode()
 
