@@ -12,12 +12,7 @@
     graphical = lib.mkOption {
       type = bool;
       default = true;
-      description = "Enable GUI features and programs";
-    };
-    neovim = lib.mkOption {
-      type = bool;
-      default = true;
-      description = "Enable neovim";
+      description = "Whether to enable GUI features and programs.";
     };
   };
 }
