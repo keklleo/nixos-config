@@ -1,7 +1,7 @@
 keys:
   - &server age1cma8j2jk0jmzgttjmqn06l87u4as9k46yzmvetflzqp995wzdsgsjppacx
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/[^/]+\.(yaml|json|env|secret)$
     key_groups:
     - age:
       - *server
