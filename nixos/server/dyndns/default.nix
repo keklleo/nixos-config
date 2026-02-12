@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -28,7 +29,7 @@ in
       Type = "oneshot";
       User = "dyndns";
       ExecStart = "${pyenv.interpreter} ${./dyndns.py}";
-      EnvironmentFile = ./. + "/nc.env.secret";
+      EnvironmentFile = config.sops.secrets.dyndns.path;
     };
   };
 }

@@ -9,6 +9,8 @@
     (import ../base.nix { inherit inputs outputs; })
     ./hardware-configuration.nix
     ./config.nix
+    inputs.sops-nix.nixosModules.sops
+    ./secrets
     ./dyndns
   ];
 
