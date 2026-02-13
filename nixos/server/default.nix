@@ -14,13 +14,11 @@
     ./dyndns
   ];
 
-  users.users = {
-    leonhard = {
-      initialPassword = "leonhard";
-      isNormalUser = true;
-      extraGroups = [ "wheel" ];
-      openssh.authorizedKeys.keys = config.kekleo.publicKeys;
-    };
+  users.users.leonhard = {
+    initialPassword = "leonhard";
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = config.kekleo.publicKeys;
   };
 
   networking = {

@@ -18,7 +18,6 @@
       self,
       nixpkgs,
       home-manager,
-      nixvim,
       ...
     }@inputs:
     let
