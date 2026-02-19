@@ -1,11 +1,5 @@
 {
-  inputs,
-  outputs,
-  ...
-}:
-{
   imports = [
-    (import ../base.nix { inherit inputs outputs; })
     ./hardware-configuration.nix
   ];
 

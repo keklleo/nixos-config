@@ -1,17 +1,17 @@
 {
-  inputs,
-  outputs,
   config,
   ...
 }:
 {
   imports = [
-    (import ../base.nix { inherit inputs outputs; })
     ./hardware-configuration.nix
-    ./config.nix
-    inputs.sops-nix.nixosModules.sops
     ./secrets
     ./dyndns
+  ];
+
+  kekleo.graphical = false;
+  kekleo.publicKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOsLFjdS9JEcgBPa6NvOzpJp8coJPJwJFuM+PQCZ8brl leonhard"
   ];
 
   users.users.leonhard = {

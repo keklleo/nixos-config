@@ -1,28 +1,16 @@
 {
   inputs,
-  outputs,
-}:
-{
   lib,
-  config,
   pkgs,
   ...
 }:
 {
   imports = [
-    outputs.nixosModules
+    ./fish.nix
+    ./firefox.nix
+    ./hyprland.nix
+    ./ly.nix
   ];
-
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
 
   nix =
     let
@@ -30,12 +18,9 @@
     in
     {
       settings = {
-        # Enable flakes and new 'nix' command
         experimental-features = "nix-command flakes";
         # Opinionated: disable global registry
         flake-registry = "";
-        # Workaround for https://github.com/NixOS/nix/issues/9574
-        nix-path = config.nix.nixPath;
       };
       # Opinionated: disable channels
       channel.enable = false;

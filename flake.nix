@@ -1,16 +1,20 @@
 {
+  description = "leonhard's nix config";
+
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixvim.url = "github:nix-community/nixvim/nixos-25.11";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -18,18 +22,41 @@
       self,
       nixpkgs,
       home-manager,
+      sops-nix,
+      nixvim,
       ...
     }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
 
-      commonModules = [ ./options.nix ];
+      homeImports = [
+        ./options.nix
+        nixvim.homeModules.nixvim
+        ./home-manager/base
+      ];
 
       mkNixosConfig = name: modules: {
         "${name}" = nixpkgs.lib.nixosSystem {
-          modules = modules ++ commonModules;
+          modules = modules ++ [
+            ./nixos/base
+            ./options.nix
+            home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                extraSpecialArgs = { inherit inputs outputs; };
+                users.leonhard.imports = homeImports ++ [
+                  ./home-manager/leonhard
+                ];
+              };
+            }
+          ];
           specialArgs = { inherit inputs outputs; };
         };
       };
@@ -37,22 +64,15 @@
       mkHomeConfig = name: modules: {
         "${name}" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = modules ++ commonModules;
+          modules = modules ++ homeImports;
           extraSpecialArgs = { inherit inputs outputs; };
         };
       };
     in
     {
-      packages = import ./pkgs pkgs;
-      overlays = import ./overlays { inherit inputs; };
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
-
       nixosConfigurations =
         (mkNixosConfig "desktop" [ ./nixos/desktop ]) // (mkNixosConfig "server" [ ./nixos/server ]);
 
-      homeConfigurations =
-        (mkHomeConfig "leonhard@desktop" [ ./home-manager/desktop/leonhard.nix ])
-        // (mkHomeConfig "leonhard@server" [ ./home-manager/server/leonhard.nix ]);
+      homeConfigurations = mkHomeConfig "leonhard" [ ./home-manager/leonhard ];
     };
 }
