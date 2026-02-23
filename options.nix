@@ -4,6 +4,11 @@
 }:
 {
   options.kekleo = with lib.types; {
+    domain = lib.mkOption {
+      type = str;
+      default = "";
+      description = "Domain of the device.";
+    };
     publicKeys = lib.mkOption {
       type = listOf str;
       default = [ ];
