@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./secrets
     ./dyndns
+    ./vaultwarden.nix
   ];
 
   kekleo.graphical = false;
