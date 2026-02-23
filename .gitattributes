@@ -1,0 +1,1 @@
+secret-config.nix filter=git-crypt diff=git-crypt

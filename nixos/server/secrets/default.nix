@@ -3,6 +3,10 @@
   ...
 }:
 {
+  imports = [
+    ./secret-config.nix
+  ];
+
   sops.secrets.dyndns = {
     format = "dotenv";
     sopsFile = ./dyndns.env;
