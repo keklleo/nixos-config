@@ -1,6 +1,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./exegol.nix
   ];
 
   # Enable CUPS to print documents.
@@ -20,6 +21,8 @@
   #   alsa.support32Bit = true;
   #   pulse.enable = true;
   # };
+
+  kekleo.exegol = true;
 
   users.users = {
     leonhard = {
