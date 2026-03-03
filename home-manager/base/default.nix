@@ -1,10 +1,12 @@
 {
+  config,
   osConfig ? null,
   lib,
   ...
 }:
 let
-  mkDefaultSharedAttrs = defaults: lib.mapAttrs (_: v: lib.mkDefault v) defaults;
+  mkDefaultSharedAttrs =
+    base: defaults: lib.mapAttrs (_: v: lib.mkDefault v) (lib.filterAttrs (k: _: base ? ${k}) defaults);
 in
 {
   imports = [
@@ -16,7 +18,7 @@ in
     ./rofi
   ];
 
-  kekleo = lib.mkIf (osConfig != null) (mkDefaultSharedAttrs (osConfig.kekleo or { }));
+  kekleo = lib.mkIf (osConfig != null) (mkDefaultSharedAttrs config.kekleo (osConfig.kekleo or { }));
 
   programs.home-manager.enable = true;
 
