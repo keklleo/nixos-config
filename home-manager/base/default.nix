@@ -20,6 +20,13 @@ in
 
   kekleo = lib.mkIf (osConfig != null) (mkDefaultSharedAttrs config.kekleo (osConfig.kekleo or { }));
 
+  home.sessionVariables = {
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_STATE_HOME = "$HOME/.local/state";
+  };
+
   programs.home-manager.enable = true;
 
   # Nicely reload system units when changing configs
